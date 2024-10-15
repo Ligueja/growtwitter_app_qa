@@ -7,7 +7,7 @@ export interface LoginResponse {
   ok: boolean;
   message: string;
   authToken?: string;
-  user?: {
+  userLogged?: {
     username: string;
     name: string;
     avatar?: string;

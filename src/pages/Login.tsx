@@ -21,29 +21,96 @@ export function Login() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
+  
     const credentials = {
       email: event.currentTarget.email.value,
       password: event.currentTarget.password.value,
     };
-
+  
     const resultado = await login(credentials);
-
+  
     if (!resultado.ok) {
       alert(resultado.message);
       return;
     }
-
-    localStorage.setItem("authToken", JSON.stringify(resultado.authToken));
-    (event.target as HTMLFormElement).reset();
-    localStorage.setItem("name", JSON.stringify(resultado.user?.name));
-    localStorage.setItem("username", JSON.stringify(resultado.user?.username));
-    // localStorage.setItem("userData", JSON.stringify(resultado.user));
-    localStorage.setItem("avatar", JSON.stringify(resultado.user?.avatar));
-
+  
+    if (resultado.authToken) {
+      localStorage.setItem("authToken", resultado.authToken);
+    } else {
+      console.warn("Token de autenticação não encontrado.");
+    }
+  
+    // Corrigindo o acesso aos dados do usuário
+    const user = resultado.userLogged;
+  
+    if (user?.name) {
+      localStorage.setItem("name", user.name);
+    } else {
+      console.warn("Nome do usuário não encontrado");
+    }
+  
+    if (user?.username) {
+      localStorage.setItem("username", user.username);
+    } else {
+      console.warn("Username não encontrado");
+    }
+  
+    if (user?.avatar) {
+      localStorage.setItem("avatar", user.avatar);
+    } else {
+      console.warn("Avatar não encontrado");
+    }
+  
+    // Exibe mensagem de sucesso
     alert(resultado.message);
     navigate("/feed");
   }
+  
+  // async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  //   event.preventDefault();
+
+  //   const credentials = {
+  //     email: event.currentTarget.email.value,
+  //     password: event.currentTarget.password.value,
+  //   };
+
+  //   const resultado = await login(credentials);
+
+  //   console.log(resultado);
+
+  //   if (!resultado.ok) {
+  //     alert(resultado.message);
+  //     return;
+  //   }
+
+  //   if (resultado.authToken) {
+  //     localStorage.setItem("authToken", resultado.authToken);
+  //   } else {
+  //     console.warn("Token de autenticação não encontrado.");
+  //   }
+  //   // Verifica e armazena dados do usuário, se disponíveis
+  //   if (resultado.user?.name) {
+  //     localStorage.setItem("name", resultado.user.name);
+  //   } else {
+  //     console.warn("Nome do usuário não encontrado");
+  //   }
+
+  //   if (resultado.user?.username) {
+  //     localStorage.setItem("username", resultado.user.username);
+  //   } else {
+  //     console.warn("Username não encontrado");
+  //   }
+
+  //   if (resultado.user?.avatar) {
+  //     localStorage.setItem("avatar", resultado.user.avatar);
+  //   } else {
+  //     console.warn("Avatar não encontrado");
+  //   }
+
+  //   // Exibe mensagem de sucesso
+  //   alert(resultado.message);
+  //   navigate("/feed");
+  // }
 
   return (
     <ContainerLoginStyled>
@@ -64,15 +131,15 @@ export function Login() {
             <h2>Entrar no Growtwitter</h2>
             <form onSubmit={handleSubmit}>
               <InputGroupLoginStyled>
-                <label htmlFor='email'>E-mail</label>
-                <input type='email' name='email' id='email' required />
+                <label htmlFor="email">E-mail</label>
+                <input type="email" name="email" id="email" required />
               </InputGroupLoginStyled>
               <InputGroupLoginStyled>
-                <label htmlFor='password'>Password</label>
-                <input type='password' name='password' id='password' required />
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" id="password" required />
               </InputGroupLoginStyled>
               <InputGroupLoginStyled>
-                <button type='submit'>Entrar</button>
+                <button type="submit">Entrar</button>
               </InputGroupLoginStyled>
             </form>
           </RightLoginStyled>
@@ -81,3 +148,4 @@ export function Login() {
     </ContainerLoginStyled>
   );
 }
+

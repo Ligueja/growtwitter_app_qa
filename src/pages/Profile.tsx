@@ -29,7 +29,9 @@ import {
 } from "../components/styled/Card/CardAll";
 import { Tweet } from "../configs/services/growtwitter-api/tweet/tweet.types";
 import { listProfile } from "../configs/services/growtwitter-api/tweet/tweet.service";
+
 import defaultProfileImage from "../assets/default_profile.png";
+import { logout } from "../configs/services/growtwitter-api/auth/auth.service";
 
 export function Profile() {
   const [tweets, setTweets] = useState<Array<Tweet>>([]);
@@ -38,10 +40,10 @@ export function Profile() {
   const navigate = useNavigate();
   const authToken = localStorage.getItem("authToken");
 
-  // Função para garantir que o valor não seja undefined
+  // Função para pegar item do localStorage sem usar JSON.parse
   const getItemFromLocalStorage = (key: string, defaultValue: string) => {
     const item = localStorage.getItem(key);
-    return item ? JSON.parse(item) : defaultValue;
+    return item ? item : defaultValue;
   };
 
   const name = getItemFromLocalStorage("name", "");
@@ -98,20 +100,25 @@ export function Profile() {
     }));
   };
 
+  const handleLogout = () => {
+    logout(); // Limpa o localStorage
+    navigate("/"); // Redireciona para a página de login
+  };
+
   return (
     <Fragment>
       <ContainerPages>
         <Nav>
           <NavMain />
           <NavDown>
-            <NavDownImage avatarSrc={avatar} />
+            <NavDownImage avatarSrc={avatar || defaultProfileImage} />
             <NavDownText>
               <h1>{name}</h1>
               <p>@{username}</p>
             </NavDownText>
           </NavDown>
           <NavDownOut>
-            <Link to={"/"}>Sair</Link>
+            <Link to="/" onClick={handleLogout}>Sair</Link> {/* Adicionando o handler */}
           </NavDownOut>
         </Nav>
         <MainContainer>
@@ -133,7 +140,7 @@ export function Profile() {
             </div>
 
             <MainProfileTopImage>
-              <MainProfileTopAvatar avatarSrc={avatar} />
+              <MainProfileTopAvatar avatarSrc={avatar || defaultProfileImage} />
             </MainProfileTopImage>
             <MainProfileTopText>
               <h2>{name}</h2>
@@ -143,7 +150,7 @@ export function Profile() {
             {tweets.map((tweet) => (
               <CardContainer key={tweet.id}>
                 <CardImage>
-                  <img src={avatar} alt='user-avatar' />
+                  <img src={avatar || defaultProfileImage} alt='user-avatar' />
                 </CardImage>
                 <CardContainerContent>
                   <CardUserData>
@@ -207,4 +214,3 @@ export function Profile() {
     </Fragment>
   );
 }
-

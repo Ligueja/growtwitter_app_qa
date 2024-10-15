@@ -21,3 +21,10 @@ export async function login(credentials: Credentials): Promise<LoginResponse> {
     } as LoginResponse;
   }
 }
+
+export const logout = () => {
+  localStorage.removeItem("authToken");
+  localStorage.removeItem("name");
+  localStorage.removeItem("username");
+  localStorage.removeItem("avatar");
+};
