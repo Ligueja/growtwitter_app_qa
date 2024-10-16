@@ -7,16 +7,12 @@ export const NavMain = styled.div`
 
   ul {
     list-style-type: none;
-    padding: 0; /* Remover padding padrão */
+    padding: 0;
   }
 
   li {
     display: flex;
-    align-items: center; /* Alinha ícones e texto verticalmente */
-    /* display: flex;
-    align-items: center;
-    text-align: -webkit-match-parent;
-    unicode-bidi: isolate; */
+    align-items: center; 
   }
 
   a {
@@ -24,7 +20,7 @@ export const NavMain = styled.div`
     align-items: center;
     text-decoration: none;
     color: inherit;
-    margin-left: 8px; /* Espaço entre o ícone e o texto */
+    margin-left: 8px; 
   }
 
   a:hover,
@@ -36,8 +32,8 @@ export const NavMain = styled.div`
 
   img {
     padding: 8px;
-    height: 15px; /* Ajustar altura do ícone */
-    width: 15px; /* Ajustar largura do ícone */
+    height: 15px; 
+    width: 15px; 
   }
 
   button {

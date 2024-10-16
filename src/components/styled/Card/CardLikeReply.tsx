@@ -18,4 +18,4 @@ export const CardLikeReply = styled.div`
   }
 `;
 
-// colocar image reply e like (select e deselect)
+

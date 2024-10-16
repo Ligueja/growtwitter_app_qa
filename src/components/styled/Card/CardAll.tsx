@@ -21,7 +21,7 @@ export const CardImage = styled.div`
   img {
     width: 100%;
     height: 100%;
-    /* object-fit: cover; */
+    
   }
 `;
 
@@ -42,13 +42,9 @@ export const CardUserData = styled.div`
   }
 `;
 
-// colocar o nome do usuário e o @username
-
 export const CardContent = styled.div`
   color: rgb(79, 79, 79);
 `;
-
-// colocar o conteúdo do tweet
 
 export const CardButton = styled.div`
   display: flex;
@@ -75,4 +71,3 @@ export const CardLikeReply = styled.div`
   }
 `;
 
-// colocar image reply e like (select e deselect)

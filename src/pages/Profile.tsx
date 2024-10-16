@@ -40,7 +40,6 @@ export function Profile() {
   const navigate = useNavigate();
   const authToken = localStorage.getItem("authToken");
 
-  // Função para pegar item do localStorage sem usar JSON.parse
   const getItemFromLocalStorage = (key: string, defaultValue: string) => {
     const item = localStorage.getItem(key);
     return item ? item : defaultValue;
@@ -101,8 +100,8 @@ export function Profile() {
   };
 
   const handleLogout = () => {
-    logout(); // Limpa o localStorage
-    navigate("/"); // Redireciona para a página de login
+    logout(); 
+    navigate("/");
   };
 
   return (
@@ -118,7 +117,7 @@ export function Profile() {
             </NavDownText>
           </NavDown>
           <NavDownOut>
-            <Link to="/" onClick={handleLogout}>Sair</Link> {/* Adicionando o handler */}
+            <Link to="/" onClick={handleLogout}>Sair</Link>
           </NavDownOut>
         </Nav>
         <MainContainer>

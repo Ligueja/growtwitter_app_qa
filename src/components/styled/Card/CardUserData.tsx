@@ -10,4 +10,4 @@ export const CardUserData = styled.div`
   }
 `;
 
-// colocar o nome do usuário e o @username
+

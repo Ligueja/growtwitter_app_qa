@@ -40,7 +40,6 @@ export function Login() {
       console.warn("Token de autenticação não encontrado.");
     }
   
-    // Corrigindo o acesso aos dados do usuário
     const user = resultado.userLogged;
   
     if (user?.name) {
@@ -61,58 +60,11 @@ export function Login() {
       console.warn("Avatar não encontrado");
     }
   
-    // Exibe mensagem de sucesso
     alert(resultado.message);
     navigate("/feed");
   }
   
-  // async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-
-  //   const credentials = {
-  //     email: event.currentTarget.email.value,
-  //     password: event.currentTarget.password.value,
-  //   };
-
-  //   const resultado = await login(credentials);
-
-  //   console.log(resultado);
-
-  //   if (!resultado.ok) {
-  //     alert(resultado.message);
-  //     return;
-  //   }
-
-  //   if (resultado.authToken) {
-  //     localStorage.setItem("authToken", resultado.authToken);
-  //   } else {
-  //     console.warn("Token de autenticação não encontrado.");
-  //   }
-  //   // Verifica e armazena dados do usuário, se disponíveis
-  //   if (resultado.user?.name) {
-  //     localStorage.setItem("name", resultado.user.name);
-  //   } else {
-  //     console.warn("Nome do usuário não encontrado");
-  //   }
-
-  //   if (resultado.user?.username) {
-  //     localStorage.setItem("username", resultado.user.username);
-  //   } else {
-  //     console.warn("Username não encontrado");
-  //   }
-
-  //   if (resultado.user?.avatar) {
-  //     localStorage.setItem("avatar", resultado.user.avatar);
-  //   } else {
-  //     console.warn("Avatar não encontrado");
-  //   }
-
-  //   // Exibe mensagem de sucesso
-  //   alert(resultado.message);
-  //   navigate("/feed");
-  // }
-
-  return (
+ return (
     <ContainerLoginStyled>
       <CardLoginStyled>
         <LeftLoginStyled>

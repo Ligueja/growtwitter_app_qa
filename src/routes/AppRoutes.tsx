@@ -4,7 +4,7 @@ import { Feed } from "../pages/Feed";
 import { Login } from "../pages/Login";
 import { Profile } from "../pages/Profile";
 
-// definição de todos os paths que a app vai ter
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-// definição do componente das rotas
+
 export function AppRoutes() {
   return <RouterProvider router={router} />;
 }

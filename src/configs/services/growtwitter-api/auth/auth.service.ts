@@ -8,7 +8,7 @@ export async function login(credentials: Credentials): Promise<LoginResponse> {
       "/auth/login",
       credentials
     );
-    console.log("Resposta da API de login:", resposta.data); // Log da resposta da API
+    console.log("Resposta da API de login:", resposta.data);
     return resposta.data;
   } catch (err: unknown) {
     if (isAxiosError(err)) {

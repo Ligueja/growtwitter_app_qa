@@ -11,6 +11,5 @@ export interface LoginResponse {
     username: string;
     name: string;
     avatar?: string;
-    // Adicionar outras propriedades do usuário conforme necessário
   };
 }
